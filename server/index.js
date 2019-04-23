@@ -3,12 +3,14 @@ const express = require("express")
 const session = require("express-session")
 
 const swagCtrl = require("./controllers/swagController")
+const authCtrl = require("./controllers/authController")
 
 const app = express()
 
 let { SESSION_SECRET, SESSION_PORT } = process.env
 let checkForSession = require("./middlewares/checkForSession")
 
+// --Middleware-- //
 app.use(express.json())
 // makes the body of the req available
 
@@ -21,7 +23,10 @@ app.use(session({
 
 app.use(checkForSession)
 
+// --Endpoints-- //
 app.get("/api/swag", swagCtrl.read)
+
+app.post("/api/register", authCtrl.register)
 
 
 app.listen(SESSION_PORT, () => {
