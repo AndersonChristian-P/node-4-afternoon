@@ -5,6 +5,7 @@ const session = require("express-session")
 const swagCtrl = require("./controllers/swagController")
 const authCtrl = require("./controllers/authController")
 const cartCtrl = require("./controllers/cartController")
+const searchCtrl = require("./controllers/searchController")
 
 const app = express()
 
@@ -40,6 +41,8 @@ app.post("/api/cart/checkout", cartCtrl.checkout)
 app.post("/api/cart/:id", cartCtrl.add)
 app.delete("/api/cart/:id", cartCtrl.delete)
 
+///// Swag Filter
+app.get("/api/search", searchCtrl.search)
 
 app.listen(SESSION_PORT, () => {
   console.log(`listening on port ${SESSION_PORT}`)
