@@ -4,6 +4,7 @@ const session = require("express-session")
 
 const swagCtrl = require("./controllers/swagController")
 const authCtrl = require("./controllers/authController")
+const cartCtrl = require("./controllers/cartController")
 
 const app = express()
 
@@ -24,12 +25,20 @@ app.use(session({
 app.use(checkForSession)
 
 // --Endpoints-- //
+
+///// Swag
 app.get("/api/swag", swagCtrl.read)
 
+///// Auth
 app.post("/api/login", authCtrl.login)
 app.post("/api/register", authCtrl.register)
 app.post("/api/signout", authCtrl.signOut)
 app.get("/api/user", authCtrl.getUser)
+
+///// Cart
+app.post("/api/cart/checkout", cartCtrl.checkout)
+app.post("/api/cart/:id", cartCtrl.add)
+app.delete("/api/cart/:id", cartCtrl.delete)
 
 
 app.listen(SESSION_PORT, () => {
