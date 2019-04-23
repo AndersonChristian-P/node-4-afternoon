@@ -11,7 +11,7 @@ module.exports = {
 
     if (user) {
       req.session.user.username = user.username
-      res.status(200).send(session.user)
+      res.status(200).send(req.session.user)
     } else {
       res.status(500).send("Unauthorized.")
     }

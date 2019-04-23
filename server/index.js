@@ -26,7 +26,10 @@ app.use(checkForSession)
 // --Endpoints-- //
 app.get("/api/swag", swagCtrl.read)
 
+app.post("/api/login", authCtrl.login)
 app.post("/api/register", authCtrl.register)
+app.post("/api/signout", authCtrl.signOut)
+app.get("/api/user", authCtrl.getUser)
 
 
 app.listen(SESSION_PORT, () => {
