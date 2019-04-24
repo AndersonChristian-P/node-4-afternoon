@@ -13,6 +13,7 @@ module.exports = {
       const itemToAdd = swag.find(swag => +swag.id === +id)
       user.cart.push(itemToAdd)
       user.total += itemToAdd.price
+      res.status(200).send(user)
     }
 
     res.status(200).send(user)
